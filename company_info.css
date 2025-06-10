@@ -1,0 +1,947 @@
+/* --- Global Variables (from homepage CSS) --- */
+:root {
+    --brand-blue: #337AB7;
+    --background-left: #ffffff;
+    --text-dark: #2d3748;
+    --text-light: #718096;
+    --border-color: #e2e8f0;
+    --placeholder-color: #a0aec0;
+    --background-main: #fff;
+    --required-red: #E53E3E;
+    --font-family: 'Poppins', 'Assistant', sans-serif;
+}
+
+/* --- Reset and Body --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', 'Assistant', sans-serif;
+    background-image: url('img/background.png');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    color: var(--text-dark);
+}
+
+/* --- Main Layout Container --- */
+.main-container {
+    display: flex;
+    width: 100%;
+    max-width: 960px;
+    background-color: var(--background-main);
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+.page-container {
+    width: 100%;
+    max-width: 1200px;
+    background-color: var(--background-main);
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    padding: 2rem 3rem;
+    transition: opacity 0.2s ease-in-out; /* For language change */
+}
+
+/* --- Header --- */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+}
+.header-left { display: flex; align-items: center; gap: 1rem; }
+.main-logo { height: 40px; }
+.company-info { display: flex; flex-direction: column; }
+.company-name-header { font-size: 0.9rem; color: var(--text-light); }
+.user-name-header { font-size: 1.1rem; font-weight: 600; }
+.header-right { position: relative; }
+
+/* --- Language Switcher --- */
+
+.lang-select {
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+/* --- Progress Bar --- */
+.progress-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 2.5rem auto;
+    width: 85%;
+    position: relative;
+}
+.progress-bar::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--border-color);
+    z-index: 1;
+}
+.step {
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center;
+    position: relative; z-index: 2;
+    flex: 1;
+    transition: opacity 0.3s ease;
+}
+.step::before {
+    content: '';
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background-color: var(--background-main);
+    border: 2px solid var(--border-color);
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+.step-label { font-size: 0.85rem; color: var(--text-light); }
+.step.active::before, .step.completed::before {
+    border-color: var(--brand-blue);
+}
+.step.completed::before {
+    background-color: var(--brand-blue);
+}
+.step.active .step-label { color: var(--text-dark); font-weight: 600; }
+
+/* --- Progress Bar Interactivity (NEW) --- */
+.step.completed {
+    cursor: pointer;
+}
+.step.completed:hover::before {
+    transform: scale(1.15);
+    box-shadow: 0 0 10px rgba(51, 122, 183, 0.3);
+}
+.step:not(.completed):not(.active) {
+    opacity: 0.6;
+    cursor: default;
+}
+
+
+/* --- Main Content --- */
+.page-title { text-align: center; font-size: 1.75rem; margin-bottom: 2rem; }
+.setup-form { display: flex; gap: 2rem; align-items: flex-start; }
+
+/* --- Form Cards --- */
+.form-card {
+    flex: 1;
+    background: #FDFDFD;
+    border: 1px solid #F0F2F5;
+    border-radius: 16px;
+    padding: 2rem;
+}
+.card-title {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-size: 1.2rem; margin-bottom: 1.5rem; font-weight: 600;
+}
+.card-title img { height: 24px; }
+.form-row { display: flex; gap: 1rem; }
+.form-group { margin-bottom: 1.25rem; flex: 1; }
+label { display: block; font-size: 0.9rem; font-weight: 500; margin-bottom: 0.5rem; }
+label .required { color: var(--required-red); }
+.label-note { color: var(--text-light); font-weight: 400; font-size: 0.9 rem;}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    height: 44px;
+    padding: 0 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+input::placeholder { color: var(--placeholder-color); }
+input:focus {
+    outline: none; border-color: var(--brand-blue);
+    box-shadow: 0 0 0 3px rgba(51, 122, 183, 0.15);
+}
+
+/* --- Logo Upload --- */
+.logo-upload-area { display: flex; align-items: center; gap: 1rem; }
+.logo-preview {
+    width: 60px; height: 60px;
+    border-radius: 8px;
+    border: 1px dashed var(--border-color);
+    object-fit: contain; padding: 5px;
+}
+.upload-btn {
+    margin-top: 15px;
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--background-main);
+    cursor: pointer; font-weight: 500;
+}
+.upload-btn img { height: 16px; }
+
+/* --- Buttons --- */
+.submit-btn {
+    width: 100%; background: var(--brand-blue); color: white; border: none;
+    padding: 14px; border-radius: 8px; font-size: 16px; font-weight: 600;
+    cursor: pointer; transition: background-color 0.3s, transform 0.2s;
+    display: flex; justify-content: center; align-items: center; gap: 10px;
+    margin-top: 10px; box-shadow: 0px 7px 15px 0px rgba(46, 76, 118, 0.10);
+}
+
+.submit-btn:hover {
+    background-color: #286090; transform: translateY(-2px);
+}
+
+/* --- Select2 Customizations --- */
+.select2-container--default .select2-selection--single {
+    height: 44px; display: flex; align-items: center;
+    border: 1px solid var(--border-color); border-radius: 8px;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered { padding-left: 1rem; color: var(--text-dark); }
+.select2-container--default .select2-selection--single .select2-selection__arrow { height: 42px; right: 8px; }
+
+.select2-container--default.select2-container--open .select2-selection--single {
+    border-color: var(--brand-blue);
+    box-shadow: 0 0 0 3px rgba(51, 122, 183, 0.15);
+}
+.select2-dropdown { border: 1px solid var(--border-color); border-radius: 8px; }
+
+
+/* --- Additions for Choose Product Page --- */
+
+/* Animation for the progress bar */
+.progress-bar::before, .step::before {
+    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); /* Smooth animation */
+}
+
+/* Product Selection Layout */
+.product-selection-form {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.product-card {
+    flex: 1;
+    background: var(--background-main);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.5rem;
+}
+
+.product-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.product-header img { height: 40px; }
+.product-header h3 { font-size: 1.2rem; margin: 0; }
+.product-header p { font-size: 0.9rem; color: var(--text-light); margin: 0; }
+.try-link { color: var(--brand-blue); text-decoration: none; font-weight: 600; }
+
+/* Toggle Switch Styles */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+    margin-inline-start: auto; /* Push to the end */
+}
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+    position: absolute; cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    border-radius: 28px;
+    transition: .4s;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px; width: 20px;
+    left: 4px; bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: .4s;
+}
+input:checked + .slider { background-color: var(--brand-blue); }
+input:checked + .slider:before { transform: translateX(22px); }
+
+/* Features Grid */
+.features-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+.feature-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem; 
+    background-color: var(--background-main);
+    border: 1px solid var(--border-color); 
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+
+.feature-chip:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.feature-chip img {
+    height: 22px;
+}
+
+/* Center the Next button for this page */
+.form-actions {
+    text-align: center;
+}
+.form-actions .next-btn {
+    width: auto;
+    padding: 0.8rem 4rem;
+}
+
+
+/* --- Dynamic Header Logo --- */
+.dynamic-logo-container {
+    width: 40px;
+    height: 40px;
+}
+.company-logo-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    object-fit: contain;
+}
+.logo-placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--border-color);
+}
+
+
+.error-message {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    color: #b33a3a;
+    background-color: #ffe6e6;
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 12px;
+    font-size: 0.95rem;
+    border: 1px solid #e0b4b4;
+}
+
+/* --- SPA & Animation Additions (NEW / MODIFIED) --- */
+#app-content {
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+#app-content.fade-out {
+    opacity: 0;
+    transform: translateY(15px);
+}
+
+/* NEW: For language change animation */
+.page-container.lang-change-fade {
+    opacity: 0;
+}
+
+
+/* --- RTL & Responsive --- */
+[dir="rtl"] {
+    .logo-upload-area { flex-direction: row-reverse; }
+    .card-title { flex-direction: row; }
+    .card-title span { margin-right: 0.75rem; }
+    .logo-upload-area{
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+[dir="rtl"] input:checked + .slider:before {
+  transform: translateX(-22px);
+}
+[dir="rtl"] .slider:before {
+  left: auto;
+  right: 4px;
+}
+
+@media (max-width: 1000px) {
+    .product-selection-form {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+}
+@media (max-width: 992px) {
+    .setup-form { flex-direction: column; }
+    .form-card { width: 100%; }
+}
+@media (max-width: 768px) {
+    .page-container { padding: 1rem; }
+    .header-right { align-self: flex-start; }
+    .form-row { flex-direction: column; }
+    .progress-bar { display: none; }
+}
+
+/* company_info.css */
+
+/* --- Additions for Responsive Header --- */
+
+/* 1. Make the main header container wrappable */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap; /* Allows the right side (lang switcher) to wrap on very small screens */
+    gap: 1rem;       /* Adds space between items when they wrap */
+}
+
+/* 2. Make the left-side container wrappable */
+.header-left { 
+    display: flex; 
+    align-items: center; 
+    gap: 1rem;
+    flex-wrap: wrap; /* This is the key change to allow the user block to wrap */
+}
+
+/* 3. Style our new grouping block */
+.user-company-block {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Maintains the gap between the logo and text */
+}
+
+/* 4. Ensure the language switcher aligns correctly */
+.header-right { 
+    position: relative;
+    /* This pushes the language switcher to the far right, even when wrapping */
+    margin-inline-start: auto; 
+}
+
+/* =================================================================== */
+/* FINAL HEADER STYLES - Matches the latest image perfectly          */
+/* =================================================================== */
+
+/* --- Default & Desktop Layout --- */
+.page-header {
+    display: flex;
+    justify-content: space-between; /* Pushes children to opposite ends */
+    align-items: center;
+    gap: 1rem;
+
+    /* Your existing border styles */
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* The new container for the left-side items */
+.header-group-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* The block for company logo and user info */
+.user-company-block {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* In RTL, the order of items INSIDE the left group is reversed */
+[dir="rtl"] .header-group-left {
+    flex-direction: row-reverse;
+}
+/* And the order INSIDE the user block is also reversed */
+[dir="rtl"] .user-company-block {
+    flex-direction: row-reverse;
+}
+
+
+/* --- Mobile Layout (Breakpoint at 768px) --- */
+@media (max-width: 768px) {
+    .page-header {
+        /* On mobile, switch to Grid for the 2-row layout */
+        display: grid;
+        grid-template-columns: 1fr auto; /* Content column and language column */
+        grid-template-rows: auto auto;    /* Two rows */
+    }
+
+    /* The left group now spans the first column and is on the top row */
+    .header-group-left {
+        grid-row: 1;
+        grid-column: 1;
+        /* It wraps to a second line on its own if needed */
+        flex-wrap: wrap; 
+    }
+
+    /* The language switcher is on the top row in the second column */
+    .header-right {
+        grid-row: 1;
+        grid-column: 2;
+    }
+    
+    /* On mobile, we want the EZ logo and user block on separate lines */
+    /* So we change the user block to take up the full width of its parent */
+    .user-company-block {
+        width: 100%;
+    }
+
+    [dir="rtl"] {
+        .user-company-block{
+            display: flex;
+            flex-direction: row;
+        }
+    }
+
+}
+ [dir="rtl"]{
+    .user-company-block{
+    display: flex;
+    flex-direction: row;
+        
+}
+}
+
+/* --- Inner Styles (no changes needed) --- */
+.company-info {
+    display: flex;
+    flex-direction: column;
+}
+.company-name-header {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+.user-name-header {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+.main-logo {
+    height: 40px;
+}
+.header-right {
+    position: relative;
+}
+
+
+/* --- Custom Radio Button Selector for Product Page --- */
+.product-selector {
+    position: relative;
+    /* This pushes it to the end of the flex container (right in LTR, left in RTL) */
+    margin-inline-start: auto; 
+    padding-left: 1rem; /* Add some space from the text */
+}
+
+/* Hide the actual radio button */
+.product-radio-input {
+    opacity: 0;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+}
+
+/* Style the clickable label to look like a radio button */
+.product-radio-label {
+    display: block;
+    width: 28px;
+    height: 28px;
+    border: 2px solid var(--border-color);
+    border-radius: 50%; /* Makes it a circle */
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    position: relative;
+}
+
+/* Create the inner "checked" circle using the ::after pseudo-element */
+.product-radio-label::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0); /* Start scaled down to 0 */
+    width: 16px;
+    height: 16px;
+    background-color: var(--brand-blue);
+    border-radius: 50%;
+    transition: transform 0.2s ease-in-out;
+}
+
+/* When the hidden input is checked, change the label's border and show the inner circle */
+.product-radio-input:checked + .product-radio-label {
+    border-color: var(--brand-blue);
+}
+
+.product-radio-input:checked + .product-radio-label::after {
+    transform: translate(-50%, -50%) scale(1); /* Scale up to full size */
+}
+
+/* Add a focus state for accessibility */
+.product-radio-input:focus + .product-radio-label {
+    box-shadow: 0 0 0 3px rgba(51, 122, 183, 0.15);
+}
+
+/* Hover effect */
+.product-radio-label:hover {
+    border-color: #a0aec0; /* A slightly darker border on hover */
+}
+
+
+/* The :has() pseudo-class styles the .product-card IF it has a checked input inside */
+.product-card:has(.product-radio-input:checked) {
+    border-color: var(--brand-blue); /* Highlight the border */
+    box-shadow: 0 8px 25px rgba(51, 122, 183, 0.1); /* Add a subtle glow */
+    transform: translateY(-4px); /* Lift the card up slightly */
+}
+
+/* Add a smooth transition to the card itself */
+.product-card {
+    /* ... your existing .product-card styles ... */
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.product-card {
+    flex: 1;
+    background: var(--background-main);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.5rem;
+    /* ADD THIS: Smooth transition for selection effect */
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* ADD THIS: The new rule for the selected card */
+.product-card:has(.product-radio-input:checked) {
+    border-color: var(--brand-blue);
+    box-shadow: 0 8px 25px rgba(51, 122, 183, 0.1);
+    transform: translateY(-4px);
+}
+
+
+/* --- 7.5. Verification Page Styles (Six-Box Layout) --- */
+/* =================================================================== */
+.verification-container {
+    max-width: 450px;
+    margin: 2rem auto;
+    text-align: center;
+    padding: 2rem;
+    background: #FDFDFD;
+    border: 1px solid #F0F2F5;
+    border-radius: 16px;
+}
+
+.verification-subtitle {
+    color: var(--text-light);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+}
+
+/* This is the container for the six input boxes */
+.code-inputs {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    /* This ensures it flips correctly in RTL */
+    flex-direction: row-reverse;
+}
+
+/* We only want to flip it back to LTR if the page is LTR */
+[dir="ltr"] .code-inputs {
+    flex-direction: row;
+}
+
+/* Styling for each individual code box */
+.code-inputs {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem; /* Reduced from 1.5rem to make space for the error margin */
+    flex-direction: row-reverse;
+}
+
+.code-input:focus {
+    border-color: var(--brand-blue);
+    box-shadow: 0 0 0 3px rgba(51, 122, 183, 0.15);
+    outline: none;
+}
+
+/* Error state for the input boxes */
+.code-input.input-error {
+    border-color: var(--required-red);
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* Styling for the footer links */
+.verification-footer {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.action-link {
+    color: var(--brand-blue);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+#error-message[style*="display: block;"] { /* Apply margin only when visible */
+    margin-bottom: 1.5rem; 
+}
+
+@media (max-width: 480px) {
+    .code-input {
+        width: 40px;
+        height: 48px;
+        font-size: 1.2rem;
+    }
+    .code-inputs {
+        gap: 0.5rem;
+    }
+    .page-container {
+        padding: 1rem; /* Reduce overall padding on very small screens */
+    }
+}
+
+
+/* company_info.css */
+
+/* --- Modal (Popup) Styles --- */
+/* =================================================================== */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(45, 55, 72, 0.6); /* Use a semi-transparent dark color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    backdrop-filter: blur(4px); /* Adds a nice blur effect to the background */
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.modal-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 1.5rem 2rem 2rem 2rem; /* Adjusted padding */
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 420px; /* Adjusted max-width */
+    transform: translateY(20px) scale(0.98); /* Start from slightly below */
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.modal-overlay.visible .modal-content {
+    transform: translateY(0) scale(1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.modal-close-btn {
+    background: none;
+    border: none;
+    font-size: 1.75rem; /* Larger 'x' */
+    line-height: 1;
+    cursor: pointer;
+    color: var(--text-light);
+    transition: color 0.2s ease;
+}
+.modal-close-btn:hover {
+    color: var(--text-dark);
+}
+
+/* Align the label and input correctly */
+.modal-body .form-group {
+    text-align: left; /* Align label to the left */
+}
+
+/* For RTL, align the label to the right */
+[dir="rtl"] .modal-body .form-group {
+    text-align: right;
+}
+
+/* Use the same input styling as the main forms for consistency */
+.modal-body #new-email-input {
+    width: 100%;
+    height: 44px;
+    padding: 0 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    direction: ltr; /* Ensure email input is always LTR */
+    text-align: left;
+}
+
+.modal-body #new-email-input:focus {
+    outline: none;
+    border-color: var(--brand-blue);
+    box-shadow: 0 0 0 3px rgba(51, 122, 183, 0.15);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end; /* Pushes the button to the right */
+    margin-top: 2rem; /* More space above the button */
+}
+
+/* Re-using the .submit-btn style for the modal button */
+.modal-actions .submit-btn {
+    width: auto;
+    padding: 0.7rem 2rem;
+    margin-top: 0; /* Remove top margin from default submit-btn */
+}
+
+
+/* --- Success Page Styles --- */
+/* =================================================================== */
+.success-container {
+    text-align: center;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem; /* Tighter gap */
+}
+
+.success-title {
+    font-size: 2.25rem;
+    margin-top: 0; /* No margin on title */
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+}
+
+.success-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    max-width: 450px;
+    line-height: 1.6;
+    margin-bottom: 1.5rem; /* Space before the redirect notice */
+}
+
+.redirect-notice {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 2rem; /* Space between notice and button */
+    min-height: 1.2em; /* Prevents layout shift when text changes */
+}
+
+#go-to-dashboard-btn {
+    width: auto;
+    padding: 0.9rem 2.5rem;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+
+/* --- Dynamic Header Logo (IMPROVED) --- */
+.dynamic-logo-container {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0; /* Prevents the container from shrinking if space is tight */
+    
+    /* Use Flexbox to perfectly center the image inside */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Optional: Add a subtle border or background for better framing */
+    background-color: #f8f9fa; 
+    border: 1px solid var(--border-color);
+    border-radius: 8px; /* Match the image's border-radius */
+    overflow: hidden; /* Ensures nothing spills out */
+}
+
+.company-logo-img {
+    /* Let the image take up as much space as it can, up to the container's limits */
+    max-width: 100%;
+    max-height: 100%;
+    
+    /* This is the key property for scaling without distortion */
+    object-fit: cover; 
+    border-radius: 0; /* The container now handles the border-radius */
+}
+
+.logo-placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px; /* Let's make it a squircle to match */
+    background-color: var(--border-color);
+}
+
+
+    
+/* By default (in LTR), hide the RTL arrow */
+.rtl-arrow {
+    display: none;
+}
+.ltr-arrow {
+    display: inline-block;
+}
+
+/* When the direction is RTL... */
+[dir="rtl"] {
+    /* ...hide the LTR arrow */
+    .ltr-arrow {
+        display: none;
+    }
+    
+    /* ...and show the RTL arrow */
+    .rtl-arrow {
+        display: inline-block;
+    }
+}

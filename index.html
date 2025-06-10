@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!-- The lang and dir attributes will be set by JavaScript -->
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EZTime - Welcome</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Poppins:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Link to the single CSS file -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Intl Tel Input CSS (from CDN) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css"/>
+</head>
+<body>
+
+    <div class="main-container">
+        <!-- Logo panel is now first in the DOM to appear on top on mobile -->
+        <div class="logo-panel">
+            <img src="img\logo_svg.svg" alt="EZ TIME Logo">
+        </div>
+
+        <!-- Form panel is second, will be positioned by flexbox -->
+        <div class="form-panel">
+            
+            <!-- This container will be populated by JavaScript with the language dropdown -->
+            <div id="lang-switcher-container"></div>
+
+            <h1><span data-lang-key="welcome_to"></span> <span class="brand-name">EZTime</span></h1>
+            <p class="subtitle">
+                <span data-lang-key="subtitle_part1"></span>
+                <em data-lang-key="subtitle_part2"></em>
+            </p>
+
+            <div class="trial-banner">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
+                <span><span data-lang-key="trial_days"></span> <strong data-lang-key="trial_free"></strong></span>
+            </div>
+
+            <form action="#" method="post">
+                <div class="form-group">
+                    <label for="full-name" data-lang-key="label_fullname"></label>
+                    <input type="text" id="full-name" name="full_name" data-lang-placeholder="placeholder_name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone-number" data-lang-key="label_phone"></label>
+                    <div class="phone-input-group">
+                        <div class="country-code-selector">
+                           <span>+972</span>
+                           <svg class="icon chevron" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+                        </div>
+                        <input type="tel" id="phone-number" name="phone_number" data-lang-placeholder="placeholder_phone">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="business-email" data-lang-key="label_email"></label>
+                    <input type="email" id="business-email" name="business_email" data-lang-placeholder="placeholder_email">
+                </div>
+
+                <button type="submit" class="submit-btn" id="submit-btn">
+                     <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white"><path d="M15 4V2"/><path d="M15 16v-2"/><path d="M8 9H2"/><path d="M22 9h-6"/><path d="M15 11.23a3 3 0 0 0 -5.2 1.54l-2.53 4.4a2 2 0 0 0 1.74 3.02l4.4 -2.54a3 3 0 0 0 1.55 -5.19z"/></svg>
+                    <span data-lang-key="button_text"></span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="lang.js"></script> <!-- Language file first -->
+    <!-- Link to the JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>

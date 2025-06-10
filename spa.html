@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang-key="title">Set Up Your Company - EZTime</title>
+    
+    <!-- Google Fonts & Libraries CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <!-- Your Custom CSS -->
+    <link rel="stylesheet" href="company_info.css">
+</head>
+<body>
+    <div class="page-container">
+        <!-- Header נשאר קבוע -->
+ <header class="page-header">
+    <!-- Item 1: Main Logo -->
+    <img src="img/smallLogo.svg" class="main-logo">
+
+    <!-- Item 2: The block that will wrap -->
+    <div class="user-company-block">
+        <div id="dynamic-logo-container" class="dynamic-logo-container"></div>
+        <div class="company-info">
+            <span id="company-name-header" class="company-name-header" data-lang-key="header_company_title">Your Company</span>
+            <span id="user-name-header" class="user-name-header"></span>
+        </div>
+    </div>
+
+    <!-- Item 3: Language Switcher -->
+    <div class="header-right">
+        <div id="lang-switcher-container"></div>
+    </div>
+</header>
+        <!-- Progress Bar נשאר קבוע -->
+<div class="progress-bar">
+    <div class="step" data-step="1"><span class="step-label" data-lang-key="step_company_details">Company Details</span></div>
+    <div class="step" data-step="2"><span class="step-label" data-lang-key="step_choose_product">Choose Product</span></div>
+    <div class="step" data-step="3"><span class="step-label" data-lang-key="step_verification">Verification</span></div>
+    <div class="step" data-step="4"><span class="step-label" data-lang-key="step_start">Success!</span></div>
+</div>
+        
+        <!-- מיכל תוכן דינמי -->
+        <main id="app-content" class="content-area">
+            <!-- התוכן של העמודים יטען לכאן על ידי main.js -->
+        </main>
+    </div>
+
+    <!-- Libraries JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    
+    <!-- Data & App Logic -->
+    <script src="lang.js"></script>
+    <script src="features.js"></script>
+    <!-- זהו הסקריפט היחיד שנטען, הוא יטען את השאר -->
+    <script type="module" src="main.js"></script>
+</body>
+</html>
